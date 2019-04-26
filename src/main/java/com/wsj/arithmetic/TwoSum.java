@@ -1,4 +1,4 @@
-package com.wsj;
+package com.wsj.arithmetic;
 
 import java.util.HashMap;
 import java.util.Map;

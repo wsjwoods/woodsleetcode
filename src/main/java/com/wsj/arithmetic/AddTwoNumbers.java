@@ -1,4 +1,4 @@
-package com.wsj;
+package com.wsj.arithmetic;
 
 import com.wsj.common.ListNode;
 
