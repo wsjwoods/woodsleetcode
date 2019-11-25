@@ -48,13 +48,13 @@ import java.util.Map;
  */
 public class L13_RomanToInt {
     public static void main(String[] args) {
+        String str = "MCMXCIV";
+
+        System.out.println(romanToInt(str));
 
     }
 
-
-
-
-    public int romanToInt(String s) {
+    public static int romanToInt(String str) {
         Map<String,Integer> romanMap = new HashMap<String,Integer>();
         romanMap.put("I",1);
         romanMap.put("V",5);
@@ -64,12 +64,21 @@ public class L13_RomanToInt {
         romanMap.put("D",500);
         romanMap.put("M",1000);
 
-
-
-
-
-
-
-        return 0;
+        int result = 0;
+        for (int i=0;i<str.length();i++){
+            String leftChr = String.valueOf(str.charAt(i));
+            int leftValue = romanMap.get(leftChr);
+            if( i < str.length()-1){
+                String rightChr = String.valueOf(str.charAt(i+1));
+                int rightValue = romanMap.get(rightChr);
+                if (leftValue<rightValue)
+                    result += -leftValue;
+                else
+                    result += leftValue;
+            } else {
+                result += leftValue;
+            }
+        }
+        return result;
     }
 }
