@@ -55,21 +55,21 @@ public class L13_RomanToInt {
     }
 
     public static int romanToInt(String str) {
-        Map<String,Integer> romanMap = new HashMap<String,Integer>();
-        romanMap.put("I",1);
-        romanMap.put("V",5);
-        romanMap.put("X",10);
-        romanMap.put("L",50);
-        romanMap.put("C",100);
-        romanMap.put("D",500);
-        romanMap.put("M",1000);
+        Map<Character,Integer> romanMap = new HashMap<Character,Integer>(64);
+        romanMap.put('I',1);
+        romanMap.put('V',5);
+        romanMap.put('X',10);
+        romanMap.put('L',50);
+        romanMap.put('C',100);
+        romanMap.put('D',500);
+        romanMap.put('M',1000);
 
         int result = 0;
         for (int i=0;i<str.length();i++){
-            String leftChr = String.valueOf(str.charAt(i));
+            char leftChr = str.charAt(i);
             int leftValue = romanMap.get(leftChr);
             if( i < str.length()-1){
-                String rightChr = String.valueOf(str.charAt(i+1));
+                char rightChr = str.charAt(i+1);
                 int rightValue = romanMap.get(rightChr);
                 if (leftValue<rightValue)
                     result += -leftValue;
