@@ -14,4 +14,12 @@ public class Test01 {
         int i = ((right - left) >> 1) + left;
         System.out.println(i);
     }
+
+    @Test
+    public void test02(){
+        int num = 1147395599;
+        System.out.println(num * num);
+
+
+    }
 }
