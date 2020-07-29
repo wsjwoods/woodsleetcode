@@ -1,5 +1,6 @@
 package com.wsj.arithmetic;
 
+import java.net.Inet4Address;
 import java.util.*;
 
 /**
@@ -32,38 +33,32 @@ public class L16_ThreeSumClosest {
     public int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
 
-        int x = nums[0];
-        int y = nums[1];
-        int z = nums[2];
-
-        int xIndex = 0;
-        int yIndex = 1;
-        int zIndex = 2;
-        int max = Math.max(Math.max(x,y),z);
-        int min = Math.min(Math.min(x,y),z);
-        int offset = 3;
-        int sum = x + y + z;
-        int diff = target - sum;
-
-        while (true){
-            if(diff == 0) {
-                break;
-            }else if(diff > 0){
-                //todo 取三个数中最大的替换后一个比他小的
-                for(int i=offset;i<nums.length;i++){
-                    if (max > nums[i]){
-                        sum = sum - max + nums[i];
-                        diff = target - sum;
-
-                    }
+        int j,k;
+        int res = nums[0] + nums[1] + nums[2];
+        int preI = 0;
+        for(int i=0;i<nums.length-2;i++){
+            if(i !=0 && preI == nums[i]){ // 如果i等于他后面的数，跳过，继续比较，直到不等为止
+                continue;
+            }
+            preI = nums[i];
+            j=i+1;
+            k=nums.length-1;
+            while (j<k){
+                int sum = nums[i] + nums[j] + nums[k];
+                int diff = Math.abs(sum - target);
+                int resDiff = Math.abs(res - target);
+                if(diff < resDiff) res = sum;
+                if( sum == target ){
+                    return sum;
+                }else if(sum > target){
+                    k--;
+                }else {
+                    j++;
                 }
-            }else {
-                //todo  取三个数中最小的替换后一个比他大的
             }
         }
 
-
-        return sum;
+        return res;
 
     }
 }
